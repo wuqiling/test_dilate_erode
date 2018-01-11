@@ -30,17 +30,17 @@ int g_nTrackbarNumer = 0;//0表示腐蚀erode, 1表示膨胀dilate
 int g_nStructElementSize = 3; //结构元素(内核矩阵)的尺寸
 
 
-							  //-----------------------------------【全局函数声明部分】--------------------------------------
-							  //            描述：全局函数声明
-							  //-----------------------------------------------------------------------------------------------
+//-----------------------------------【全局函数声明部分】--------------------------------------
+//            描述：全局函数声明
+//-----------------------------------------------------------------------------------------------
 void Process();//膨胀和腐蚀的处理函数
 void on_TrackbarNumChange(int, void *);//回调函数
 void on_ElementSizeChange(int, void *);//回调函数
 
 
-									   //-----------------------------------【main( )函数】--------------------------------------------
-									   //            描述：控制台应用程序的入口函数，我们的程序从这里开始
-									   //-----------------------------------------------------------------------------------------------
+//-----------------------------------【main( )函数】--------------------------------------------
+//            描述：控制台应用程序的入口函数，我们的程序从这里开始
+//-----------------------------------------------------------------------------------------------
 int main()
 {
 	//改变console字体颜色
@@ -57,7 +57,9 @@ int main()
 	//进行初次腐蚀操作并显示效果图
 	namedWindow("【效果图】");
 	//获取自定义核
-	Mat element = getStructuringElement(MORPH_RECT, Size(2 * g_nStructElementSize + 1, 2 * g_nStructElementSize + 1), Point(g_nStructElementSize, g_nStructElementSize));
+	Mat element = getStructuringElement(MORPH_RECT, 
+		Size(2 * g_nStructElementSize + 1, 2 * g_nStructElementSize + 1), 
+		Point(g_nStructElementSize, g_nStructElementSize));
 	erode(g_srcImage, g_dstImage, element);
 	imshow("【效果图】", g_dstImage);
 
@@ -82,7 +84,9 @@ int main()
 void Process()
 {
 	//获取自定义核
-	Mat element = getStructuringElement(MORPH_RECT, Size(2 * g_nStructElementSize + 1, 2 * g_nStructElementSize + 1), Point(g_nStructElementSize, g_nStructElementSize));
+	Mat element = getStructuringElement(MORPH_RECT, 
+		Size(2 * g_nStructElementSize + 1, 2 * g_nStructElementSize + 1), 
+		Point(g_nStructElementSize, g_nStructElementSize));
 
 	//进行腐蚀或膨胀操作
 	if (g_nTrackbarNumer == 0) {
